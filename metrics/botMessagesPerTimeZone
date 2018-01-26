@@ -1,0 +1,8 @@
+{
+  "textFilters": {
+    "source":["bot"]
+  },
+  "name":"botMessagesPerSourceAndTimeZone",
+  "groupBy":["user.time_zone", "source"],
+  "ifHasNot": "delete"
+}

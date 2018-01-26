@@ -1,0 +1,6 @@
+{
+  "textFilters": {},
+  "name":"countByTimezone",
+  "groupBy":["user.time_zone"],
+  "ifHasNot": "delete"
+}

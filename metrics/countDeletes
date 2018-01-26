@@ -1,0 +1,6 @@
+{
+  "textFilters": {},
+  "name":"countDelete",
+  "groupBy":[],
+  "ifHas": "delete"
+}

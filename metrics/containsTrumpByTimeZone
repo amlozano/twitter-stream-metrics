@@ -1,0 +1,8 @@
+{
+  "textFilters": {
+    "text":["trump"]
+  },
+  "name":"containsTrumpByTimeZone",
+  "groupBy":["user.time_zone"],
+  "ifHasNot": "delete"
+}

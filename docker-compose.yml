@@ -1,0 +1,66 @@
+version: '2'
+services:
+  kafka:
+    image: spotify/kafka
+    ports:
+     - "9092:9092"
+     - "2181:2181"
+    container_name: kafka
+  influxdb:
+    image: influxdb:1.2.4
+    ports:
+     - "8086:8086"
+     - "8083:8083"
+    volumes:
+     - $PWD/influxdb:/var/lib/influxdb
+     - $PWD/influxdb.conf:/etc/influxdb/influxdb.conf:ro
+    command: -config /etc/influxdb/influxdb.conf
+    environment:
+     - INFLUXDB_USER:$INFLUXDB_USER
+     - INFLUXDB_USER_PASSWORD:$INFLUXDB_USER_PASSWORD
+     - INFLUXDB_ADMIN_ENABLED=true
+    container_name: influxdb
+  grafana:
+    image: grafana/grafana:4.6.0
+    depends_on:
+     - influxdb
+    ports:
+     - "3000:3000"
+    volumes:
+     - grafana:/var/lib/grafana
+    links:
+     - influxdb
+    container_name: grafana
+  twitter-ingestion:
+    image: twitter-ingestion
+    container_name: twitter-ingestion
+    depends_on:
+     - kafka
+    volumes:
+     - $PWD/../.secrets/reference.conf:/opt/twitter-ingestion/application.conf:ro
+    links:
+      - kafka:zookeeper
+      - kafka
+  aggregator:
+    image: aggregator
+    volumes:
+     - $PWD/metrics:/opt/twitter-ingestion/metrics
+    environment:
+     - AGG_APP_ID=aggv2
+    depends_on:
+     - kafka
+    links:
+      - kafka:zookeeper
+      - kafka
+  toInflux:
+    image: kafka-to-influxdb
+    container_name: kafka-to-influxdb
+    depends_on:
+     - kafka
+     - influxdb
+    links:
+      - kafka:zookeeper
+      - kafka
+      - influxdb
+volumes:
+  grafana:

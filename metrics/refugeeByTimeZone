@@ -1,0 +1,8 @@
+{
+  "textFilters": {
+    "text":["refugee", "refugiado", "fluechtlinge", "flüchtlinge"]
+  },
+  "name":"containsRefugeeByTimezone",
+  "groupBy":["user.time_zone"],
+  "ifHasNot": "delete"
+}

@@ -1,0 +1,6 @@
+{
+  "textFilters": {},
+  "name":"countByLang",
+  "groupBy":["user.lang"],
+  "ifHasNot": "delete"
+}

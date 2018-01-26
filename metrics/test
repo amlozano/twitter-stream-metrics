@@ -1,0 +1,8 @@
+{
+  "textFilters": {
+    "text":["hola"]
+  },
+  "name":"hola",
+  "groupBy":["user.time_zone"],
+  "ifHasNot": "delete"
+}

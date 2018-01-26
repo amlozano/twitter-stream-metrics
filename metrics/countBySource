@@ -1,0 +1,6 @@
+{
+  "textFilters": {},
+  "name":"countBySource",
+  "groupBy":["source"],
+  "ifHasNot": "delete"
+}

@@ -1,0 +1,6 @@
+influxdb/*
+grafana/*
+target/*
+*/target/*
+project/project/target/*
+*.jar
