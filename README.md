@@ -47,8 +47,9 @@ counted for the calculation. Text filters are case insensitive.
 - `name`: Defines the name of the metric. That name will be translated to a measurement in 
 InfluxDB, needed to query for the data later on in Grafana.
 
-- `groupBy`: Defines a grouping in the metric. It corresponds with a tag in InfluxDB, that means
-you could group by or filter by it in the defined query in Grafana.
+- `groupBy`: Defines a grouping in the metric. It is an array of paths, each one corresponds 
+with a tag in InfluxDB, that means you could group by or filter by it in the defined query 
+in Grafana.
 
 - `ifHasNot`: Defines a filter in the message. If the json message contains the field, 
 the filter passes.
