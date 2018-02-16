@@ -30,6 +30,11 @@ services:
      - grafana:/var/lib/grafana
     links:
      - influxdb
+    environment:
+     - TWITTER_CONSUMER_KEY:$TWITTER_CONSUMER_KEY
+     - TWITTER_CONSUMER_SECRET:$TWITTER_CONSUMER_SECRET
+     - TWITTER_TOKEN=$TWITTER_TOKEN
+     - TWITTER_TOKEN_SECRET=$TWITTER_TOKEN_SECRET
     container_name: grafana
   twitter-ingestion:
     image: twitter-ingestion

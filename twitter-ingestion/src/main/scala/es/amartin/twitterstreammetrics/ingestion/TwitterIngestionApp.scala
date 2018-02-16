@@ -16,6 +16,7 @@ object TwitterIngestionApp extends App with LazyLogging {
 
   addShutdownHook {
     input.close()
+    output.close()
   }
 
   val sourceOAuth = new OAuth1(

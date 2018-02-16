@@ -9,18 +9,9 @@ This step requires to have docker compose installed in the machine, apart from s
     1. You need a Twitter account. You should configure a token following the guide:
 https://developer.twitter.com/en/docs/basics/authentication/overview
 
-    2. You should copy the secrets in a directory located, relative to this project in 
-    ../.secrets/reference.conf, with the following content:
-
-        ```
-        twitter {
-            consumerKey = [YOUR_KEY]
-            consumerSecret = [YOUR_SECRET]
-            token = [YOUR_TOKEN]
-            tokenSecret = [YOUR_TOKEN_SECRET]
-        }
-        ```
-        
+    2. You should initialize the environment variables `TWITTER_CONSUMER_KEY`, `TWITTER_CONSUMER_SECRET`, 
+    `TWITTER_TOKEN` and `TWITTER_TOKEN_SECRET` with the values taken from the step 1.
+    
     3. You should initialize the environment variables `INFLUX_USER` y `INFLUX_USER_PASSWORD` 
     with the desired values. These will be the credentials to access the local InfluxDB.
 
@@ -28,4 +19,5 @@ https://developer.twitter.com/en/docs/basics/authentication/overview
 
 - Metrics definitions should be located in the folder `metrics/`
 
+- You can access Grafana going to http://localhost:3000/
 
