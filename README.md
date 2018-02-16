@@ -1,4 +1,4 @@
-## Framework to aggregate Twitter Stream metrics and show results in Grafana.
+# Framework to aggregate Twitter Stream metrics and show results in Grafana.
 
 - Use build.sh to compile and generate docker images. 
 You need docker, sbt and scala in the machine to build and generate the images.
@@ -21,7 +21,7 @@ https://developer.twitter.com/en/docs/basics/authentication/overview
 
 - You can access Grafana going to http://localhost:3000/
 
-# Metrics definition
+## Metrics definition
 
 Metrics should have the following structure:
 
