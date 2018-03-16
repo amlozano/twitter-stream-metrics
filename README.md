@@ -1,7 +1,7 @@
 # Framework to aggregate Twitter Stream metrics and show results in Grafana.
 
 - Use build.sh to compile and generate docker images. 
-You need docker, sbt and scala in the machine to build and generate the images.
+You need JDK 8, docker, sbt 1.1.1 and scala 2.11.8. in the machine to build and generate the images.
 
 - The command `docker-compose up` starts the system once it is compiled.
 This step requires to have docker compose installed in the machine, apart from some steps:
