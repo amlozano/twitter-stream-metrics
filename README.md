@@ -7,7 +7,7 @@ You need docker, sbt and scala in the machine to build and generate the images.
 This step requires to have docker compose installed in the machine, apart from some steps:
 
     1. You need a Twitter account. You should configure a token following the guide:
-https://developer.twitter.com/en/docs/basics/authentication/overview
+https://developer.twitter.com/en/docs/basics/authentication/overview/oauth
 
     2. You should initialize the environment variables `TWITTER_CONSUMER_KEY`, `TWITTER_CONSUMER_SECRET`, 
     `TWITTER_TOKEN` and `TWITTER_TOKEN_SECRET` with the values taken from the step 1.
