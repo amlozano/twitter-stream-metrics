@@ -66,7 +66,7 @@ One example of a metric definition could be:
   },
   "name":"containsHello",
   "groupBy":["user.lang"],
-  "ifHasNot": "weirdField"
+  "ifHasNot": "delete"
 }
 ```
 
