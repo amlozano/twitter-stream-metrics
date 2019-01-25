@@ -1,7 +1,7 @@
 sbt clean && \
 sbt twitter-ingestion/assembly && \
 cp twitter-ingestion/docker/Dockerfile twitter-ingestion/target/scala-2.11/Dockerfile && \
-cd twitter-ingestion/targetscala-2.11/ && \
+cd twitter-ingestion/target/scala-2.11/ && \
 docker build --no-cache -t twitter-ingestion . && \
 cd ../.. && \
 sbt aggregator/assembly && \
