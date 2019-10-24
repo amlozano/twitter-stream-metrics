@@ -16,6 +16,5 @@ libraryDependencies ++= Seq(
   Dependencies.kafkaStreams,
   Dependencies.scalaLogging,
   Dependencies.logback,
-  Dependencies.Test.scalatest,
-  Dependencies.Test.embeddedKafka
+  Dependencies.Test.scalatest
 )

@@ -4,20 +4,17 @@ import es.amartin.twitterstreammetrics.aggregation.aggregation.{MetricDefinition
 PredefinedMetricDefinitions}
 import es.amartin.twitterstreammetrics.aggregation.config.{Configuration, ConfigurationStub}
 import es.amartin.twitterstreammetrics.aggregation.io.{KafkaStream, TwitterMetricKafkaStreamWriter}
-import net.manub.embeddedkafka.{EmbeddedKafka, EmbeddedKafkaConfig}
 import org.scalatest.{FunSpec, Matchers}
 import org.scalatest.concurrent.Eventually
 import org.scalatest.time.Span
 
 import scala.concurrent.duration._
 
-class AggregatorAppSpec extends FunSpec with Matchers with EmbeddedKafka with Eventually {
+class AggregatorAppSpec extends FunSpec with Matchers with KafkaTesting with Eventually {
 
   implicit override val patienceConfig = PatienceConfig(
     timeout = scaled(Span(50, org.scalatest.time.Seconds)),
     interval = scaled(Span(1, org.scalatest.time.Seconds)))
-
-  val userDefinedConfig = EmbeddedKafkaConfig(kafkaPort = 0, zooKeeperPort = 0)
 
   private def fixture(kafkaPort: Int, zookeeperPort: Int) = new {
     implicit val config: Configuration = new ConfigurationStub(kafkaPort, zookeeperPort)
@@ -34,8 +31,7 @@ class AggregatorAppSpec extends FunSpec with Matchers with EmbeddedKafka with Ev
   describe("An AggregatorApp") {
 
     it("should generate a metric for a message that match the filter") {
-      withRunningKafkaOnFoundPort(userDefinedConfig) { implicit actualConfig =>
-        val f = fixture(kafkaPort = actualConfig.kafkaPort, zookeeperPort = actualConfig.zooKeeperPort)
+        val f = fixture(kafkaPort = 9092, zookeeperPort = 2181)
         val message = MessageGenerator.generateMalagaMessage
         publishStringMessageToKafka(f.config.kafkaInputTopic, message)
         publishStringMessageToKafka(f.config.kafkaInputTopic, message)
@@ -49,7 +45,7 @@ class AggregatorAppSpec extends FunSpec with Matchers with EmbeddedKafka with Ev
           """"value":{"value":2,
             |"aggregationFunction":"count"}}""".stripMargin
         }
-      }
+
     }
   }
 

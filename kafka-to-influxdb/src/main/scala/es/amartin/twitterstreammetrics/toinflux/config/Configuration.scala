@@ -1,24 +1,24 @@
 package es.amartin.twitterstreammetrics.toinflux.config
 
+import es.amartin.twitterstreammetrics.kafka.KafkaConfiguration
+
 trait Configuration {
+  def influxdb: InfluxdbConfiguration
 
-  def influxBatchSize: Int
+  def kafka: KafkaConfiguration
+}
 
-  def influxDatabase: String
+trait InfluxdbConfiguration {
 
-  def influxPassword: String
+  def batchSize: Int
 
-  def influxUser: String
+  def database: String
 
-  def influxHost: String
+  def password: String
 
-  def influxRetentionPolicy: String
+  def user: String
 
-  def kafkaBrokers: String
+  def host: String
 
-  def kafkaTopic: String
-
-  def kafkaOffsetResetConfig: String
-
-  def kafkaReadInterval: Long
+  def retentionPolicy: String
 }

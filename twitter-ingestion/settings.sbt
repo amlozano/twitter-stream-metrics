@@ -18,6 +18,5 @@ libraryDependencies ++= Seq(
   Dependencies.twitter,
   Dependencies.twitterHbc,
   Dependencies.logback,
-  Dependencies.Test.scalatest,
-  Dependencies.Test.embeddedKafka
+  Dependencies.Test.scalatest
 )

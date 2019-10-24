@@ -7,7 +7,7 @@
 
     <appender name="FILE" class="ch.qos.logback.core.FileAppender">
         <!-- path to your log file, where you want to store logs -->
-        <file>/Users/D065461/proyecto/logs/aggregator.log</file>
+        <file>$HOME/logs/aggregator.log</file>
         <append>false</append>
         <encoder>
             <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>

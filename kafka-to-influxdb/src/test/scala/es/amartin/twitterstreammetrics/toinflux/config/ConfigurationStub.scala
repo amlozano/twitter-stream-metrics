@@ -1,24 +1,30 @@
 package es.amartin.twitterstreammetrics.toinflux.config
 
+import es.amartin.twitterstreammetrics.kafka.KafkaConfiguration
+
 class ConfigurationStub(kafkaPort: Int = 9092, zookeeperPort: Int = 2181) extends Configuration {
 
-  override def influxDatabase: String = "test"
+  override def influxdb: InfluxdbConfiguration = new InfluxdbConfiguration {
+    override def batchSize: Int = 100
 
-  override def influxPassword: String = "password"
+    override def database: String = "test"
 
-  override def influxUser: String = "user"
+    override def password: String = "password"
 
-  override def influxHost: String = s"localhost:8086"
+    override def user: String = "user"
 
-  override def kafkaBrokers: String = s"localhost:$kafkaPort"
+    override def host: String = "localhost:8086"
 
-  override def kafkaTopic: String = "test-topic"
+    override def retentionPolicy: String = "autogen"
+  }
 
-  override def kafkaOffsetResetConfig: String = "earliest"
+  override def kafka: KafkaConfiguration = new KafkaConfiguration {
+    override def brokers: String = s"localhost:$kafkaPort"
 
-  override def influxRetentionPolicy: String = "autogen"
+    override def topic: String = "test-topic"
 
-  override def influxBatchSize: Int = 100
+    override def offsetResetConfig: String = "earliest"
 
-  override def kafkaReadInterval: Long = 1000
+    override def readInterval: Long = 1000
+  }
 }

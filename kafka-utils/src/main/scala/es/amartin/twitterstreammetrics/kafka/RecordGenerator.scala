@@ -1,5 +1,5 @@
 
-package es.amartin.twitterstreammetrics.ingestion.dest
+package es.amartin.twitterstreammetrics.kafka
 
 import org.apache.kafka.clients.producer.ProducerRecord
 

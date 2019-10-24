@@ -1,8 +1,8 @@
 name := "kafka-to-influxdb"
 version := "0.1-SNAPSHOT"
 
-assemblyJarName in assembly := "kafka-to-influxdb.jar"
-assemblyMergeStrategy in assembly := {
+assembly / assemblyJarName := "kafka-to-influxdb.jar"
+assembly / assemblyMergeStrategy := {
   case "application.conf" => MergeStrategy.concat
   case x =>
     val oldStrategy = (assemblyMergeStrategy in assembly).value
@@ -17,6 +17,5 @@ libraryDependencies ++= Seq(
   Dependencies.scalaLogging,
   Dependencies.logback,
   Dependencies.influxDbScalaClient,
-  Dependencies.Test.scalatest,
-  Dependencies.Test.embeddedKafka
+  Dependencies.Test.scalatest
 )

@@ -5,14 +5,16 @@ import com.twitter.hbc.httpclient.auth.OAuth1
 import com.typesafe.config.ConfigFactory
 import com.typesafe.scalalogging.LazyLogging
 import es.amartin.twitterstreammetrics.ingestion.config.{Configuration, Settings}
-import es.amartin.twitterstreammetrics.ingestion.dest.{KafkaMessageWriter, MessageToOnlyByteValueRecordGenerator}
 import es.amartin.twitterstreammetrics.ingestion.source.TwitterClient
+import es.amartin.twitterstreammetrics.kafka.{KafkaConfiguration, KafkaMessageWriter, MessageToOnlyByteValueRecordGenerator}
+import org.apache.kafka.common.serialization.Serdes.{ByteArraySerde, IntegerSerde}
 
-import sys.addShutdownHook
+import scala.sys.addShutdownHook
 
 object TwitterIngestionApp extends App with LazyLogging {
 
   implicit val settings: Configuration = new Settings(ConfigFactory.load())
+  implicit val kafkaSettings: KafkaConfiguration = settings.kafka
 
   addShutdownHook {
     input.close()
@@ -28,9 +30,9 @@ object TwitterIngestionApp extends App with LazyLogging {
 
   val input = new TwitterClient(sourceOAuth, new StatusesSampleEndpoint)
 
-  val topic = settings.kafkaTopic
+  val topic = settings.kafka.topic
   val recordGenerator = new MessageToOnlyByteValueRecordGenerator(topic)
-  val output = new KafkaMessageWriter(recordGenerator)
+  val output = new KafkaMessageWriter(recordGenerator, new IntegerSerde, new ByteArraySerde)
 
   input.connect()
 
